@@ -118,11 +118,11 @@ func main() {
 		fmt.Println("Error loading .env file:", err)
 	}
 
-	fs := http.FileServer(http.Dir("static"))
+	fs := http.FileServer(http.Dir("public/static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "template/index.html")
+		http.ServeFile(w, r, "public/index.html")
 	})
 
 	http.HandleFunc("/upload", uploadFile)
